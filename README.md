@@ -134,7 +134,8 @@ $(".emojionearea").emojioneArea({
 
 #### `useInternalCDN`
 
-Whether to use the loading mechanism to load EmojiOne from CDN
+Whether to use the loading mechanism to load EmojiOne from CDN.
+If you prefer to use your own CDN for images, you should also specify `imageType`, and corresponding `imagePathPNG`, `imagePathSVG` or `imagePathSVGSprites` option
 
 **type**: `boolean`  
 **default**: `true`  
@@ -143,6 +144,15 @@ Example:
 ```js
 $(".emojionearea").emojioneArea({
     useInternalCDN: true
+});
+```
+
+Example:
+```js
+$(".emojionearea").emojioneArea({
+    useInternalCDN: false,
+    imageType: "png",
+    imagePathPNG: "https://cdn.mydomain.com/assets/3.1/emojione/png/32/"
 });
 ```
 

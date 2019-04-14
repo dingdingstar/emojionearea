@@ -68,17 +68,22 @@ function(emojione, uniRegexp, readyCallbacks, emojioneSupportMode, cdn, getEmoji
 
         emojioneReady(function() {
             var emojiSize = "";
+            emojione.imageType = options.imageType || "png";
+
             if (options.useInternalCDN) {
                 if (emojioneSupportMode > 4) emojiSize = emojione.emojiSize + "/";
-
                 emojione.imagePathPNG = cdn.base + "/png/" + emojiSize;
                 emojione.imagePathSVG = cdn.base + "/svg/" + emojiSize;
                 emojione.imagePathSVGSprites = cdn.base + "/sprites/emojione.sprites.svg";
-                emojione.imageType = options.imageType;
             }
+            else {
+                if (options.imagePathPNG) emojione.imagePathPNG = options.imagePathPNG;
+                if (options.imagePathSVG) emojione.imagePathSVG = options.imagePathSVG;
+                if (options.imagePathSVG) emojione.imagePathSVGSprites = options.imagePathSVGSprites;
+            }
+
             if (getSupportMode(emojioneVersion) > 4) {
                 uniRegexp = emojione.regUnicode;
-                emojione.imageType = options.imageType || "png";
             } else {
                 uniRegexp = new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + emojione.unicodeRegexp + ")", "gi");
             }
